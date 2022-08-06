@@ -1,17 +1,6 @@
 import os
+import src.code  as code
 
-
-# テスト対象のメソッド
-def delete_file(file_path):
-    try:
-        if not os.path.isfile(file_path):
-            return 'ファイルが存在しません。'
-        
-        os.remove(file_path)
-
-        return 'ファイルを削除しました。'
-    except:
-        return 'エラーが発生しました。'
 
 
 def test_file_not_exist_with_mock_func(mocker):
@@ -26,7 +15,7 @@ def test_file_not_exist(mocker):
     mocker.patch('os.path.isfile', return_value=False)
 
     # テスト対象を実行する
-    message = delete_file('test_file_path')
+    message = code.delete_file('test_file_path')
 
     # 戻り値のメッセージを検証
     assert message == 'ファイルが存在しません。'
